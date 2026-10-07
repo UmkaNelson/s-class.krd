@@ -191,3 +191,8 @@
     .info dd { margin-bottom: 12px; }
     header .btn { padding: 13px 14px; }
   }
+
+  /* Заголовок из одного длинного слова: не переносится, а подстраивается под ширину экрана */
+  .oneline { white-space: nowrap; }
+  .page-hero h1.oneline { font-size: clamp(28px, 9.4vw, 170px); }
+  .sec-head h2.oneline { font-size: clamp(28px, 8.4vw, 132px); }
