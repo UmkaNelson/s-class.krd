@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>С-КЛАСС — вариант A «Неон»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #0d0d0f; --card: #17171b; --line: #2a2a30; --text: #f3f3ee; --muted: #9c9ca6; --accent: #d6ff3f; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.5 "Manrope", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  h1, h2, h3, .num { font-family: "Oswald", sans-serif; font-weight: 600; text-transform: uppercase; line-height: 1; margin: 0; letter-spacing: .01em; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+  section { padding: 64px 0; }
+  .eyebrow { color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 14px; }
+  h2 { font-size: clamp(34px, 6vw, 60px); margin-bottom: 28px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 16px 28px; border: 0; border-radius: 12px; background: var(--accent); color: #0d0d0f; font: 700 15px/1 "Manrope", sans-serif; text-decoration: none; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(214, 255, 63, .28); }
+  .btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
+  .btn.ghost:hover { border-color: var(--accent); box-shadow: none; }
+
+  header { position: sticky; top: 0; z-index: 20; background: rgba(13, 13, 15, .82); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .logo { font: 700 22px/1 "Oswald", sans-serif; text-transform: uppercase; text-decoration: none; letter-spacing: .04em; }
+  .logo span { color: var(--accent); }
+  nav { display: flex; gap: 26px; font-size: 14px; font-weight: 500; }
+  nav a { text-decoration: none; color: var(--muted); }
+  nav a:hover { color: var(--text); }
+  header .phone { font-weight: 700; text-decoration: none; white-space: nowrap; }
+  header .btn { padding: 11px 18px; font-size: 14px; }
+
+  .hero { position: relative; padding: 0; min-height: min(86vh, 760px); display: flex; align-items: flex-end; overflow: hidden; }
+  .hero .bg { position: absolute; inset: 0; background-size: cover; background-position: center 30%; }
+  .hero .bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,13,15,.35) 0%, rgba(13,13,15,.55) 45%, var(--bg) 100%); }
+  .hero .wrap { position: relative; width: 100%; padding-top: 120px; padding-bottom: 48px; }
+  .hero h1 { font-size: clamp(44px, 9.5vw, 112px); max-width: 11em; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero p { max-width: 30em; margin: 20px 0 28px; font-size: clamp(16px, 2vw, 19px); color: #dcdcd6; }
+  .hero .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  .chip { padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); font-size: 13px; text-decoration: none; }
+
+  .facts { padding: 0; }
+  .facts .grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .facts .item { padding: 28px 20px; border-left: 1px solid var(--line); }
+  .facts .item:first-child { border-left: 0; padding-left: 0; }
+  .facts .num { font-size: clamp(34px, 5vw, 56px); color: var(--accent); }
+  .facts .item p { margin: 8px 0 0; color: var(--muted); font-size: 14px; }
+
+  .scroller { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 20px 16px; margin: 0 -20px; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+  .dir { position: relative; flex: 0 0 min(72vw, 280px); aspect-ratio: 3 / 4; border-radius: 18px; overflow: hidden; scroll-snap-align: start; text-decoration: none; background: var(--card); }
+  .dir img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .dir:hover img { transform: scale(1.05); }
+  .dir::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(13,13,15,.92) 100%); }
+  .dir .cap { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 1; }
+  .dir h3 { font-size: 26px; }
+  .dir .goal { display: inline-block; margin-top: 10px; padding: 6px 12px; border-radius: 999px; background: var(--accent); color: #0d0d0f; font-size: 12px; font-weight: 700; }
+  .head-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 28px; }
+  .head-row h2 { margin: 0; }
+  .more { color: var(--accent); font-weight: 700; font-size: 14px; white-space: nowrap; }
+
+  .studios .row { display: grid; grid-template-columns: 70px 1fr auto; align-items: center; gap: 16px; padding: 22px 0; border-top: 1px solid var(--line); text-decoration: none; }
+  .studios .row:last-child { border-bottom: 1px solid var(--line); }
+  .studios .idx { font: 600 30px/1 "Oswald", sans-serif; color: var(--muted); }
+  .studios h3 { font-size: clamp(24px, 4vw, 38px); }
+  .studios .addr { color: var(--muted); margin-top: 6px; font-size: 14px; }
+  .studios .row:hover h3 { color: var(--accent); }
+  .studios .go { font-weight: 700; font-size: 14px; color: var(--accent); white-space: nowrap; }
+
+  .programs .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .prog { padding: 26px; border-radius: 18px; background: var(--card); border: 1px solid var(--line); }
+  .prog.top { border-color: var(--accent); }
+  .prog h3 { font-size: 28px; }
+  .prog p { color: var(--muted); font-size: 15px; margin: 12px 0 20px; }
+  .prog .price { font: 600 22px/1 "Oswald", sans-serif; color: var(--accent); }
+
+  .reviews .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .rev { position: relative; border-radius: 18px; overflow: hidden; aspect-ratio: 4 / 5; background: var(--card); }
+  .rev img { width: 100%; height: 100%; object-fit: cover; }
+  .rev::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(13,13,15,.9) 100%); }
+  .rev .play { position: absolute; top: 14px; right: 14px; z-index: 1; width: 44px; height: 44px; border-radius: 50%; background: var(--accent); display: grid; place-items: center; }
+  .rev .play::before { content: ""; border-left: 12px solid #0d0d0f; border-top: 8px solid transparent; border-bottom: 8px solid transparent; margin-left: 3px; }
+  .rev .cap { position: absolute; left: 16px; bottom: 16px; z-index: 1; }
+  .rev b { font: 600 22px/1 "Oswald", sans-serif; text-transform: uppercase; }
+  .rev span { display: block; font-size: 13px; color: #d0d0cc; margin-top: 4px; }
+
+  .cta .box { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center; padding: clamp(28px, 5vw, 56px); border-radius: 24px; background: var(--accent); color: #0d0d0f; }
+  .cta h2 { margin: 0 0 12px; }
+  .cta p { margin: 0; font-weight: 500; max-width: 28em; }
+  form { display: grid; gap: 10px; }
+  input { width: 100%; padding: 16px 18px; border-radius: 12px; border: 1px solid rgba(13,13,15,.2); background: #fff; font: 500 16px/1.2 "Manrope", sans-serif; color: #0d0d0f; }
+  .cta .btn { background: #0d0d0f; color: var(--accent); width: 100%; }
+  .cta small { font-size: 12px; opacity: .7; }
+
+  footer { padding: 40px 0 90px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; }
+
+  @media (max-width: 860px) {
+    nav, header .phone { display: none; }
+    section { padding: 48px 0; }
+    .facts .grid { grid-template-columns: repeat(2, 1fr); }
+    .facts .item { padding: 22px 16px; }
+    .facts .item:nth-child(odd) { border-left: 0; padding-left: 0; }
+    .facts .item:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .programs .grid, .reviews .grid { grid-template-columns: 1fr; }
+    .reviews .grid { grid-template-columns: repeat(3, 72vw); overflow-x: auto; margin: 0 -20px; padding: 0 20px 12px; }
+    .cta .box { grid-template-columns: 1fr; }
+    .studios .row { grid-template-columns: 44px 1fr; }
+    .studios .go { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#">С<span>-</span>Класс</a>
+    <nav><a href="#directions">Направления</a><a href="#studios">Студии</a><a href="#programs">Абонементы</a><a href="#reviews">Отзывы</a></nav>
+    <a class="phone" data-phone></a>
+    <a class="btn" href="#cta">Записаться</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="bg" id="heroBg"></div>
+  <div class="wrap">
+    <div class="eyebrow">Краснодар · 3 студии</div>
+    <h1>Студия фитнеса <em>для девушек</em></h1>
+    <p>Восемь направлений в одном абонементе: от пилатеса и растяжки до функциональных тренировок. Первое пробное занятие — бесплатно.</p>
+    <div class="actions">
+      <a class="btn" href="#cta">Записаться на пробное</a>
+      <a class="btn ghost" href="#directions">Выбрать направление</a>
+    </div>
+    <div class="chips" id="chips"></div>
+  </div>
+</section>
+
+<section class="facts"><div class="wrap"><div class="grid" id="facts"></div></div></section>
+
+<section id="directions">
+  <div class="wrap">
+    <div class="eyebrow">Направления</div>
+    <div class="head-row"><h2>Выбери своё</h2><a class="more" href="#">Все направления →</a></div>
+    <div class="scroller" id="dirs"></div>
+  </div>
+</section>
+
+<section class="studios" id="studios">
+  <div class="wrap">
+    <div class="eyebrow">Студии</div>
+    <h2>Рядом с тобой</h2>
+    <div id="studioList"></div>
+  </div>
+</section>
+
+<section class="programs" id="programs">
+  <div class="wrap">
+    <div class="eyebrow">Абонементы</div>
+    <div class="head-row"><h2>Программы под цель</h2><a class="more" href="#">Все абонементы →</a></div>
+    <div class="grid" id="progs"></div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="eyebrow">Отзывы</div>
+    <div class="head-row"><h2>К нам возвращаются</h2><a class="more" href="#">Все отзывы →</a></div>
+    <div class="grid" id="revs"></div>
+  </div>
+</section>
+
+<section class="cta" id="cta">
+  <div class="wrap">
+    <div class="box">
+      <div>
+        <h2>Первое пробное — бесплатно</h2>
+        <p>Оставьте номер — администратор перезвонит, поможет выбрать направление и удобную студию.</p>
+      </div>
+      <form>
+        <input type="text" placeholder="Имя" autocomplete="name" required>
+        <input type="tel" placeholder="Телефон" autocomplete="tel" required>
+        <button class="btn" type="submit">Записаться на пробное</button>
+        <small>Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных.</small>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>© С-КЛАСС, Краснодар</span><a data-phone></a></div></footer>
+
+<script src="data.js"></script>
+<script>
+  const S = window.SC;
+  document.querySelectorAll('[data-phone]').forEach((a) => { a.textContent = S.phone; a.href = S.phoneHref; });
+  document.getElementById('heroBg').style.backgroundImage = `url("${S.hero}")`;
+  document.getElementById('chips').innerHTML = S.studios.map((s) => `<a class="chip" href="#studios">${s.addr}</a>`).join('');
+  document.getElementById('facts').innerHTML = S.facts.map((f) => `<div class="item"><div class="num">${f.n}</div><p>${f.t}</p></div>`).join('');
+  document.getElementById('dirs').innerHTML = S.directions.map((d) => `<a class="dir" href="#"><img src="${d.img}" alt="${d.name} в студии С-КЛАСС" loading="lazy"><div class="cap"><h3>${d.name}</h3><span class="goal">${d.goal}</span></div></a>`).join('');
+  document.getElementById('studioList').innerHTML = S.studios.map((s, i) => `<a class="row" href="#"><div class="idx">0${i + 1}</div><div><h3>${s.name}</h3><div class="addr">Краснодар, ${s.addr}</div></div><div class="go">Расписание →</div></a>`).join('');
+  document.getElementById('progs').innerHTML = S.programs.map((p) => `<div class="prog${p.top ? ' top' : ''}"><h3>${p.name}</h3><p>${p.text}</p><div class="price">${p.price}</div></div>`).join('');
+  document.getElementById('revs').innerHTML = S.reviews.map((r) => `<div class="rev"><img src="${r.img}" alt="Видеоотзыв: ${r.name}" loading="lazy"><div class="play"></div><div class="cap"><b>${r.name}</b><span>${r.time}</span></div></div>`).join('');
+</script>
+</body>
+</html>
