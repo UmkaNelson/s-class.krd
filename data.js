@@ -1,4 +1,4 @@
-// Общие данные для трёх вариантов главной. Тексты и фото — с текущего сайта s-class-fitness-krd.ru
+// Общие данные сайта. Тексты и фото — с текущего сайта s-class-fitness-krd.ru
 const T = 'https://static.tildacdn.com/';
 window.SC = {
   phone: '+7 (918) 264-85-51',
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const here = (location.pathname.split('/').pop() || 'index.html') + location.search;
   const bar = document.createElement('div');
   bar.className = 'variant-switch';
-  bar.innerHTML = [['d.html', 'D · Светлый'], ['d.html?t=dark', 'E · Тёмный'], ['a.html', 'A'], ['b.html', 'B'], ['c.html', 'C']]
+  bar.innerHTML = [['index.html', 'Светлый'], ['index.html?t=dark', 'Тёмный']]
     .map(([href, label]) => `<a href="${href}"${href === here ? ' class="on"' : ''}>${label}</a>`).join('');
   const css = document.createElement('style');
   css.textContent = `.variant-switch{position:relative;z-index:40;display:flex;justify-content:center;gap:2px;padding:6px;background:#141416;font:600 12px/1 system-ui,sans-serif}
