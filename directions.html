@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Направления — S-Class, фитнес-студия для девушек в Краснодаре</title>
+<meta name="description" content="16 направлений фитнес-студии S-Class в Краснодаре: пилатес, стретчинг, аэро-стретчинг, TRX, хатха-йога, МФР и другие.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Montserrat стоит вместо фирменного Muller: его нет в открытом доступе, нужны файлы шрифта -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="pad page-hero">
+  <span class="tag">16 направлений · 3 уровня сложности</span>
+  <h1 class="big" style="margin-top:14px">Направ&shy;ления</h1>
+  <p class="lead">От мягкой растяжки до высокоинтенсивного тренинга. Выберите уровень нагрузки — покажем подходящие тренировки.</p>
+  <div class="filters" id="filters" role="group" aria-label="Сложность">
+    <button class="chip on" type="button" data-level="0">Все</button>
+    <button class="chip" type="button" data-level="1">Лёгкие</button>
+    <button class="chip" type="button" data-level="2">Средние</button>
+    <button class="chip" type="button" data-level="3">Интенсивные</button>
+  </div>
+  <div class="list" id="list"></div>
+</section>
+
+<div id="cta"></div>
+
+<script src="data.js"></script>
+<script src="site.js"></script>
+<script>
+  const S = window.SC;
+  document.getElementById('list').innerHTML = S.directions.map((d, i) => `
+    <article class="item reveal" id="${d.slug}" data-level="${d.level}">
+      <div class="ph"><img src="${d.img}" alt="${d.name} в студии S-Class" loading="lazy"></div>
+      <div>
+        <span class="tag">${String(i + 1).padStart(2, '0')} · сложность: ${S.levels[d.level]}</span>${lvl(d.level)}
+        <h2 class="big">${d.name}</h2>
+        <p>${d.text}</p>
+        <a class="arrow" href="#cta">Записаться на пробное →</a>
+      </div>
+    </article>`).join('');
+
+  const chips = document.querySelectorAll('.chip');
+  chips.forEach((chip) => chip.addEventListener('click', () => {
+    chips.forEach((c) => c.classList.toggle('on', c === chip));
+    const want = chip.dataset.level;
+    document.querySelectorAll('.item').forEach((el) => {
+      el.hidden = want !== '0' && el.dataset.level !== want;
+      el.classList.add('in');
+    });
+  }));
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Студии и контакты — S-Class, Краснодар</title>
+<meta name="description" content="Адреса и контакты трёх фитнес-студий S-Class в Краснодаре: Северная, 1 Мая, Трудовой Славы.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Montserrat стоит вместо фирменного Muller: его нет в открытом доступе, нужны файлы шрифта -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="pad page-hero">
+  <span class="tag">Краснодар · 3 студии</span>
+  <h1 class="big" style="margin-top:14px">Студии</h1>
+  <div class="list" id="list"></div>
+</section>
+
+<div id="cta"></div>
+
+<script src="data.js"></script>
+<script src="site.js"></script>
+<script>
+  const S = window.SC;
+  const todo = '<span class="todo">уточняется</span>';
+  document.getElementById('list').innerHTML = S.studios.map((s, i) => `
+    <article class="st-card reveal">
+      <div>
+        <span class="tag">${String(i + 1).padStart(2, '0')} · S-Class</span>
+        <h2 class="big">${s.name}</h2>
+      </div>
+      <div>
+        <dl class="info">
+          <dt>Адрес</dt><dd>Краснодар, ${s.addr}</dd>
+          <dt>Телефон</dt><dd><a href="${S.phoneHref}">${s.phone || S.phone}</a></dd>
+          <dt>Часы работы</dt><dd>${s.hours || todo}</dd>
+          <dt>Юридическое лицо</dt><dd>${s.legal || todo}</dd>
+        </dl>
+        <a class="arrow" href="https://yandex.ru/maps/?text=${encodeURIComponent('Краснодар, ' + s.addr)}" target="_blank" rel="noopener">Показать на карте →</a>
+      </div>
+    </article>`).join('');
+</script>
+</body>
+</html>
