@@ -83,6 +83,24 @@
     }), { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
+    // Видеоотзывы: клик по карточке с data-youtube открывает ролик поверх страницы
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.innerHTML = '<button class="btn close" type="button">Закрыть</button><div class="frame"></div><a class="alt" target="_blank" rel="noopener">Не открывается? Смотреть на YouTube →</a>';
+    document.body.appendChild(modal);
+    const closeModal = () => { modal.classList.remove('open'); modal.querySelector('.frame').innerHTML = ''; };
+    modal.querySelector('.close').addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+    document.addEventListener('click', (e) => {
+      const card = e.target.closest('[data-youtube]');
+      if (!card) return;
+      const id = encodeURIComponent(card.dataset.youtube);
+      modal.querySelector('.frame').innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" title="Видеоотзыв" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+      modal.querySelector('.alt').href = `https://www.youtube.com/watch?v=${id}`;
+      modal.classList.add('open');
+    });
+
     // Служебный переключатель темы (в финальный сайт не идёт)
     const sw = document.createElement('div');
     sw.className = 'variant-switch';

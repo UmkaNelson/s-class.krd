@@ -19,11 +19,12 @@
   <h1 class="big oneline" style="margin-top:14px">Направления</h1>
   <p class="lead">От мягкой растяжки до высокоинтенсивного тренинга. Выберите уровень нагрузки — покажем подходящие тренировки.</p>
   <div class="filters" id="filters" role="group" aria-label="Сложность">
-    <button class="chip on" type="button" data-level="0">Все</button>
+    <button class="chip on" type="button" data-level="0">Любая сложность</button>
     <button class="chip" type="button" data-level="1">Лёгкие</button>
     <button class="chip" type="button" data-level="2">Средние</button>
     <button class="chip" type="button" data-level="3">Интенсивные</button>
   </div>
+  <div class="filters" id="goalFilters" role="group" aria-label="Цель"></div>
   <div class="list" id="list"></div>
 </section>
 
@@ -34,25 +35,42 @@
 <script>
   const S = window.SC;
   document.getElementById('list').innerHTML = S.directions.map((d, i) => `
-    <article class="item reveal" id="${d.slug}" data-level="${d.level}">
+    <article class="item reveal" id="${d.slug}" data-level="${d.level}" data-goals="${d.goals.join(' ')}">
       <div class="ph"><img src="${d.img}" alt="${d.name} в студии S-Class" loading="lazy"></div>
       <div>
         <span class="tag">${String(i + 1).padStart(2, '0')} · сложность: ${S.levels[d.level]}</span>${lvl(d.level)}
         <h2 class="big">${d.name}</h2>
+        <div class="goal-tags">${d.goals.map((g) => `<span>${S.goals[g]}</span>`).join('')}</div>
         <p>${d.text}</p>
         <a class="arrow" href="#cta">Записаться на пробное →</a>
       </div>
     </article>`).join('');
 
-  const chips = document.querySelectorAll('.chip');
-  chips.forEach((chip) => chip.addEventListener('click', () => {
-    chips.forEach((c) => c.classList.toggle('on', c === chip));
-    const want = chip.dataset.level;
+  document.getElementById('goalFilters').innerHTML = '<button class="chip on" type="button" data-goal="">Любая цель</button>' +
+    Object.entries(S.goals).map(([key, label]) => `<button class="chip" type="button" data-goal="${key}">${label}</button>`).join('');
+  document.getElementById('list').insertAdjacentHTML('beforeend', '<p class="empty" id="empty" hidden>Под такое сочетание направлений нет — попробуйте другую сложность.</p>');
+
+  const state = { level: '0', goal: '' };
+  const apply = () => {
+    let shown = 0;
     document.querySelectorAll('.item').forEach((el) => {
-      el.hidden = want !== '0' && el.dataset.level !== want;
+      const ok = (state.level === '0' || el.dataset.level === state.level) && (!state.goal || el.dataset.goals.split(' ').includes(state.goal));
+      el.hidden = !ok;
       el.classList.add('in');
+      if (ok) shown++;
     });
-  }));
+    document.getElementById('empty').hidden = shown > 0;
+  };
+  const bind = (group, key) => {
+    const chips = document.querySelectorAll(`#${group} .chip`);
+    chips.forEach((chip) => chip.addEventListener('click', () => {
+      chips.forEach((c) => c.classList.toggle('on', c === chip));
+      state[key] = chip.dataset[key];
+      apply();
+    }));
+  };
+  bind('filters', 'level');
+  bind('goalFilters', 'goal');
 </script>
 </body>
 </html>

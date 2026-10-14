@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<div class="hero" id="hero"></div>
+<section class="hero-static" id="hero"></section>
 
 <div class="ticker" aria-hidden="true"><div id="ticker"></div></div>
 
@@ -40,13 +40,18 @@
 </section>
 
 <section class="pad" id="programs">
-  <div class="sec-head reveal"><h2 class="big oneline">Абонементы</h2><span class="tag">цены уточняются</span></div>
+  <div class="sec-head reveal"><h2 class="big oneline">Абонементы</h2></div>
   <div class="progs reveal" id="progs"></div>
 </section>
 
 <section id="reviews">
   <div class="sec-head pad reveal"><h2 class="big">S-Girls</h2><span class="tag">видеоотзывы</span></div>
   <div class="revs" id="revs"></div>
+</section>
+
+<section class="pad" id="faq">
+  <div class="sec-head reveal"><h2 class="big">Вопросы</h2></div>
+  <div class="reveal" id="faqList"></div>
 </section>
 
 <div id="cta"></div>
@@ -60,21 +65,14 @@
   const level = (d) => `сложность: ${S.levels[d.level]}`;
 
   document.getElementById('hero').innerHTML = `
-    <div class="panel first">
-      <img src="${S.hero}" alt="Тренировка в студии S-Class">
-      <div class="txt">
-        <span class="tag">fitness studio for girls · Краснодар</span>
-        <h1 class="big" style="margin-top:14px">Студия фитнеса для девушек</h1>
-        <p>16 направлений — от пилатеса и растяжки до силовых тренировок. Первое пробное занятие — бесплатно.</p>
-        <a class="btn" href="#cta">Записаться на пробное</a>
-      </div>
-      <span class="swipe">листайте →</span>
-    </div>` +
-    ['pilates', 'aero', 'trx', 'stretching'].map(bySlug).map((d) => `
-    <a class="panel" href="directions.html#${d.slug}">
-      <img src="${d.img}" alt="${d.name} в студии S-Class" loading="lazy">
-      <div class="txt"><span class="tag">${level(d)}</span><h2 class="big" style="margin-top:12px">${short(d)}</h2><span class="sub">Подробнее →</span></div>
-    </a>`).join('');
+    <img src="${S.hero}" alt="Тренировка в студии S-Class">
+    <div class="txt pad">
+      <span class="tag">fitness studio for girls · Краснодар</span>
+      <h1 class="big" style="margin-top:14px">Студия фитнеса для девушек</h1>
+      <p>16 направлений — от пилатеса и растяжки до силовых тренировок. Первое пробное занятие — бесплатно.</p>
+      <a class="btn" href="#cta">Записаться на пробное</a>
+      <div class="addrs">${S.studios.map((s) => `<a class="addr" href="studios.html">${s.addr}</a>`).join('')}</div>
+    </div>`;
 
   const line = ['Feel good.', 'Look great.', 'Live better.', 'Первое пробное — 0 ₽'].map((t) => `<span>${t}</span><span>✦</span>`).join('');
   document.getElementById('ticker').innerHTML = line.repeat(6);
@@ -85,7 +83,8 @@
       <div class="txt"><span class="tag">${level(d)}</span><h3 class="big">${short(d)}</h3></div></a>`).join('');
   document.getElementById('studioList').innerHTML = S.studios.map((s) => `<a class="studio reveal" href="studios.html"><h3 class="big">${s.name}</h3><span>${s.addr} →</span></a>`).join('');
   document.getElementById('progs').innerHTML = S.programs.map((p) => `<div class="prog">${p.top ? '<span class="pill">премиум</span>' : '<span class="tag">48 тренировок</span>'}<h3 class="big">${p.name}</h3><p>${p.text}</p><div class="price">${p.price}</div></div>`).join('');
-  document.getElementById('revs').innerHTML = S.reviews.map((r) => `<div class="rev"><img src="${r.img}" alt="Видеоотзыв: ${r.name}" loading="lazy"><span class="play">▶ смотреть</span><div class="cap"><div><b>${r.name}</b><small>${r.time}</small></div></div></div>`).join('');
+  document.getElementById('revs').innerHTML = S.reviews.map((r) => `<button class="rev" type="button" data-youtube="${r.youtube}" aria-label="Смотреть видеоотзыв: ${r.name}"><img src="${r.img}" alt="" loading="lazy"><span class="play">▶ смотреть</span><div class="cap"><b>${r.name}</b><small>${r.time}</small></div></button>`).join('');
+  document.getElementById('faqList').innerHTML = S.faq.map((f) => `<details class="faq"><summary>${f.q}</summary><p>${f.a}</p></details>`).join('');
 </script>
 </body>
 </html>

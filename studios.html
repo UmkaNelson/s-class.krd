@@ -26,7 +26,6 @@
 <script src="site.js"></script>
 <script>
   const S = window.SC;
-  const todo = '<span class="todo">уточняется</span>';
   document.getElementById('list').innerHTML = S.studios.map((s, i) => `
     <article class="st-card reveal">
       <div>
@@ -37,8 +36,8 @@
         <dl class="info">
           <dt>Адрес</dt><dd>Краснодар, ${s.addr}</dd>
           <dt>Телефон</dt><dd><a href="${S.phoneHref}">${s.phone || S.phone}</a></dd>
-          <dt>Часы работы</dt><dd>${s.hours || todo}</dd>
-          <dt>Юридическое лицо</dt><dd>${s.legal || todo}</dd>
+          ${s.hours ? `<dt>Часы работы</dt><dd>${s.hours}</dd>` : ''}
+          ${s.legal ? `<dt>Юридическое лицо</dt><dd>${s.legal}</dd>` : ''}
         </dl>
         <a class="arrow" href="https://yandex.ru/maps/?text=${encodeURIComponent('Краснодар, ' + s.addr)}" target="_blank" rel="noopener">Показать на карте →</a>
       </div>
