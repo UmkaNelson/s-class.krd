@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Направления — S-Class, фитнес-студия для девушек в Краснодаре</title>
-<meta name="description" content="16 направлений фитнес-студии S-Class в Краснодаре: пилатес, стретчинг, аэро-стретчинг, TRX, хатха-йога, МФР и другие.">
+<title>Направления — С-Класс, фитнес-студия для девушек в Краснодаре</title>
+<meta name="description" content="16 направлений фитнес-студии С-Класс в Краснодаре: пилатес, стретчинг, аэро-стретчинг, TRX, хатха-йога, МФР и другие.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Montserrat стоит вместо фирменного Muller: его нет в открытом доступе, нужны файлы шрифта -->
@@ -36,7 +36,7 @@
   const S = window.SC;
   document.getElementById('list').innerHTML = S.directions.map((d, i) => `
     <article class="item reveal" id="${d.slug}" data-level="${d.level}" data-goals="${d.goals.join(' ')}">
-      <div class="ph"><img src="${d.img}" alt="${d.name} в студии S-Class" loading="lazy"></div>
+      <div class="ph"><img src="${d.img}" alt="${d.name} в студии С-Класс" loading="lazy"></div>
       <div>
         <span class="tag">${String(i + 1).padStart(2, '0')} · сложность: ${S.levels[d.level]}</span>${lvl(d.level)}
         <h2 class="big">${d.name}</h2>

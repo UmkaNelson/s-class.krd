@@ -17,7 +17,7 @@
     const header = document.createElement('header');
     header.className = 'pad';
     header.innerHTML = `
-      <a class="logo" href="./">S-Class</a>
+      <a class="logo" href="./">С-Класс</a>
       <nav class="nav">${NAV.map(([href, label]) => `<a href="${href}"${href === page ? ' class="on"' : ''}>${label}</a>`).join('')}</nav>
       <div class="head-actions">
         <button class="btn menu" type="button" id="menuOpen">Меню</button>
@@ -69,7 +69,7 @@
         <span class="links"><a href="directions.html">Направления</a><a href="studios.html">Студии и контакты</a><a href="${S.phoneHref}">${S.phone}</a></span>
       </div>
       <p class="fine">Информация на сайте не является публичной офертой.</p>
-      <div class="wordmark" aria-hidden="true">S-Class</div>`;
+      <div class="wordmark" aria-hidden="true">С-Класс</div>`;
     document.body.appendChild(footer);
 
     // Над фото шапка прозрачная, дальше — с фоном; на внутренних страницах фон всегда

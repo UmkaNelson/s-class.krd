@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>S-Class — фитнес-студия для девушек в Краснодаре</title>
+<title>С-Класс — фитнес-студия для девушек в Краснодаре</title>
 <meta name="description" content="Фитнес-студия для девушек в Краснодаре: 16 направлений, три студии, первое пробное занятие бесплатно.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +22,7 @@
   <div class="intro reveal">
     <h2 class="big">Это больше, чем фитнес</h2>
     <div>
-      <p>S-Class — пространство для девушек, где каждая достигает своих целей через комфортный и экологичный фитнес. Тренировки в мини-группах, без боли, перегрузок и давления.</p>
+      <p>С-Класс — пространство для девушек, где каждая достигает своих целей через комфортный и экологичный фитнес. Тренировки в мини-группах, без боли, перегрузок и давления.</p>
       <a class="arrow" href="#cta">Записаться на пробное →</a>
     </div>
   </div>
@@ -65,7 +65,7 @@
   const level = (d) => `сложность: ${S.levels[d.level]}`;
 
   document.getElementById('hero').innerHTML = `
-    <img src="${S.hero}" alt="Тренировка в студии S-Class">
+    <img src="${S.hero}" alt="Тренировка в студии С-Класс">
     <div class="txt pad">
       <span class="tag">fitness studio for girls · Краснодар</span>
       <h1 class="big" style="margin-top:14px">Студия фитнеса для девушек</h1>
@@ -79,7 +79,7 @@
 
   document.getElementById('facts').innerHTML = S.facts.map((f) => `<div class="fact"><b>${f.n}</b><span class="tag">${f.t}</span></div>`).join('');
   document.getElementById('dirs').innerHTML = S.featured.map(bySlug).map((d) => `
-    <a class="dir reveal" href="directions.html#${d.slug}"><img src="${d.img}" alt="${d.name} в студии S-Class" loading="lazy">
+    <a class="dir reveal" href="directions.html#${d.slug}"><img src="${d.img}" alt="${d.name} в студии С-Класс" loading="lazy">
       <div class="txt"><span class="tag">${level(d)}</span><h3 class="big">${short(d)}</h3></div></a>`).join('');
   document.getElementById('studioList').innerHTML = S.studios.map((s) => `<a class="studio reveal" href="studios.html"><h3 class="big">${s.name}</h3><span>${s.addr} →</span></a>`).join('');
   document.getElementById('progs').innerHTML = S.programs.map((p) => `<div class="prog">${p.top ? '<span class="pill">премиум</span>' : '<span class="tag">48 тренировок</span>'}<h3 class="big">${p.name}</h3><p>${p.text}</p><div class="price">${p.price}</div></div>`).join('');
